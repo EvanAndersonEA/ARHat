@@ -866,7 +866,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f68fbc98b9133456f8a212911c899469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cowboy1: {fileID: 8300000, guid: 3c4db0d841cf64840b9d3c7fb8cc080c, type: 3}
+  cowboy2: {fileID: 8300000, guid: e909b0ce6f7b0174cb091010a349d183, type: 3}
   cowboy: {fileID: 0}
+  Gun: {fileID: 2379695273801647906, guid: 1d1c4f5b9e1baca41a3c210a26258aa8, type: 3}
 --- !u!114 &1335839539
 MonoBehaviour:
   m_ObjectHideFlags: 0

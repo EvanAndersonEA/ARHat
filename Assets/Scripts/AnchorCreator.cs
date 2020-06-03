@@ -7,8 +7,13 @@ using UnityEngine.XR.ARSubsystems;
 [RequireComponent(typeof(ARRaycastManager))]
 public class AnchorCreator : MonoBehaviour
 {
-
+    public AudioClip cowboy1;
+    public AudioClip cowboy2;
     public AudioSource cowboy;
+    bool doneBefore = false;
+    [SerializeField]
+    GameObject Gun;
+
     public void RemoveAllAnchors()
     {
         foreach (var anchor in m_Anchors)
@@ -16,6 +21,7 @@ public class AnchorCreator : MonoBehaviour
             m_AnchorManager.RemoveAnchor(anchor);
         }
         m_Anchors.Clear();
+        doneBefore = false;
     }
 
     void Awake()
@@ -24,10 +30,36 @@ public class AnchorCreator : MonoBehaviour
         m_AnchorManager = GetComponent<ARAnchorManager>();
         m_Anchors = new List<ARAnchor>();
         cowboy = GetComponent<AudioSource>();
+        cowboy.PlayOneShot(cowboy2, 1f);
     }
 
     void Update()
     {
+        if (m_Anchors.Count == 2)
+        {
+            if(doneBefore == false)
+            {
+                Instantiate(Gun, m_Anchors[0].transform);
+                Instantiate(Gun, m_Anchors[1].transform);
+                doneBefore = true;
+            }
+            else
+            {
+                m_Anchors[0].transform.LookAt(m_Anchors[1].transform);
+                m_Anchors[1].transform.LookAt(m_Anchors[0].transform);
+            }
+        }
+
+
+
+        if (m_Anchors.Count >= 2)
+        {
+            return;
+        }
+
+
+
+
         if (Input.touchCount == 0)
             return;
 
@@ -47,8 +79,15 @@ public class AnchorCreator : MonoBehaviour
             }
             else
             {
+                if (m_Anchors.Count == 0)
+                {
+                    cowboy.PlayOneShot(cowboy1, 1f);
+                }
+                else
+                {
+                    cowboy.PlayOneShot(cowboy2, 1f);
+                }
                 m_Anchors.Add(anchor);
-                cowboy.Play();
             }
         }
     }
