@@ -9,10 +9,13 @@ public class AnchorCreator : MonoBehaviour
 {
     public AudioClip cowboy1;
     public AudioClip cowboy2;
+    public AudioClip gunshot;
     public AudioSource cowboy;
     bool doneBefore = false;
     [SerializeField]
-    GameObject Gun;
+    GameObject Gun, Shot;
+
+    float timeLeft = 1f;
 
     public void RemoveAllAnchors()
     {
@@ -22,6 +25,25 @@ public class AnchorCreator : MonoBehaviour
         }
         m_Anchors.Clear();
         doneBefore = false;
+    }
+
+    public void Shoot()
+    {
+        GameObject Shot1 = Instantiate(Shot, m_Anchors[0].transform);
+        GameObject Shot2 = Instantiate(Shot, m_Anchors[1].transform);
+        cowboy.PlayOneShot(gunshot, 5f);
+
+        int whoDead = Random.Range(0,1);
+        if (whoDead == 1)
+        {
+            m_AnchorManager.RemoveAnchor(m_Anchors[0]);
+        }
+        else
+        {
+            m_AnchorManager.RemoveAnchor(m_Anchors[1]);
+        }
+        m_Anchors.Clear();
+
     }
 
     void Awake()
