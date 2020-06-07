@@ -844,7 +844,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Kill God
+  m_Text: ' High Noon'
 --- !u!222 &1076019539
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -951,6 +951,7 @@ MonoBehaviour:
   cowboy: {fileID: 0}
   Gun: {fileID: 2379695273801647906, guid: 1d1c4f5b9e1baca41a3c210a26258aa8, type: 3}
   Shot: {fileID: 7735433130822824113, guid: fcbc470e5c11f4446af898c74663cb93, type: 3}
+  Ghost: {fileID: 3811817713908265785, guid: 492585f239cb2904d8fe9847415a7c6d, type: 3}
 --- !u!114 &1335839539
 MonoBehaviour:
   m_ObjectHideFlags: 0
